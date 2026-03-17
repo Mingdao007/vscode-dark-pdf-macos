@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.3 - 2026-03-18
+
+- Merge the validated SyncTeX source/PDF alignment workflow into the skill.
+- Set `latex-workshop.view.pdf.internal.synctex.keybinding = "double-click"` in the helper script.
+- Document reverse SyncTeX from PDF double-click, forward SyncTeX from source with `Ctrl+Alt+J`, and the requirement for a sibling `.synctex.gz` file.
+
 ## 0.1.2 - 2026-03-18
 
 - Document the validated Ubuntu workspace soft-wrap path using `[latex].editor.wordWrap = "on"`.

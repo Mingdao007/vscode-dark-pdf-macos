@@ -88,6 +88,7 @@ def main() -> int:
     settings["latex-workshop.view.pdf.invert"] = args.invert
     settings["latex-workshop.view.pdf.viewer"] = "tab"
     settings["latex-workshop.view.pdf.tab.editorGroup"] = args.editor_group
+    settings["latex-workshop.view.pdf.internal.synctex.keybinding"] = "double-click"
 
     with settings_path.open("w", encoding="utf-8") as fh:
         json.dump(settings, fh, indent=4, ensure_ascii=True)
@@ -95,7 +96,9 @@ def main() -> int:
 
     print(f"Updated {settings_path}")
     print(f"latex-workshop.view.pdf.invert = {args.invert}")
+    print("Reverse SyncTeX in the PDF viewer is set to double-click.")
     print("Next step: reopen the PDF from a fresh pathname inside VS Code.")
+    print("If reverse SyncTeX does nothing, confirm a sibling .synctex.gz file exists.")
     print("If it stays bright, relaunch once with --disable-gpu.")
     return 0
 

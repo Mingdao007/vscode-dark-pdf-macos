@@ -1,6 +1,6 @@
 # vscode-dark-pdf-macos
 
-A `Codex App` skill for configuring Visual Studio Code for dark PDF viewing with LaTeX Workshop on macOS and Ubuntu, with right-side PDF tabs, source wrap, and optional LaTeX squiggle suppression.
+A `Codex App` skill for configuring Visual Studio Code for dark PDF viewing with LaTeX Workshop on macOS and Ubuntu, with right-side PDF tabs, source wrap, SyncTeX source/PDF alignment, and optional LaTeX squiggle suppression.
 
 Chinese mirror: [README.zh-CN.md](README.zh-CN.md)
 
@@ -23,20 +23,23 @@ Ask Codex App to:
 - configure dark PDF viewing in VS Code on macOS or Ubuntu with LaTeX Workshop
 - keep the PDF in the right-side tab and use the internal viewer
 - enable `.tex` soft wrap without rewriting document lines
+- jump from PDF to source by double-click and sync from source to PDF with `Ctrl+Alt+J`
 - hide distracting LaTeX squiggles through workspace settings
-- troubleshoot white PDF rendering, stale PDF paths, and `vscode-pdf` extension conflicts
+- troubleshoot white PDF rendering, stale PDF paths, missing `.synctex.gz`, and `vscode-pdf` extension conflicts
 
 ## Validated Note
 
 - On the validated Ubuntu path, reopening the PDF from a fresh pathname after applying the baseline settings was sufficient; a full VS Code restart was not required.
 - On the validated Ubuntu path, workspace `.vscode/settings.json` with `[latex].editor.wordWrap = "on"` also worked without restarting VS Code.
+- The helper script now sets reverse SyncTeX in the internal PDF viewer to `double-click`.
+- Reverse SyncTeX also requires a sibling `.synctex.gz` file beside the PDF; if it is missing, rebuild with SyncTeX enabled.
 - If the PDF stays bright, the next fallback is a single `--disable-gpu` relaunch.
 
 ## Trigger Examples
 
 - `Configure dark PDF viewing in VS Code on Ubuntu with LaTeX Workshop.`
 - `Make VS Code behave more like Overleaf for .tex editing plus PDF preview.`
-- `Hide LaTeX squiggles in this workspace without changing the document body.`
+- `Enable PDF double-click back to source in the LaTeX Workshop viewer.`
 - `My PDF is still white in VS Code. Walk me through the dark-viewer path.`
 
 ## Privacy Boundary

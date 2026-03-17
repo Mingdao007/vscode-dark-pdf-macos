@@ -11,6 +11,8 @@ Use LaTeX Workshop's internal PDF viewer first. Keep the configuration minimal a
 
 For Overleaf-like editing, treat source-editor soft wrap as part of the workflow. If a `.tex` tab does not wrap to the current pane width, fix editor settings rather than rewriting LaTeX lines for display.
 
+For Overleaf-like source/PDF alignment, use SyncTeX in both directions: reverse SyncTeX from PDF to source and forward SyncTeX from source to PDF.
+
 If the user only wants distracting red or yellow LaTeX squiggles to disappear inside the editor, prefer workspace editor settings for `latex` first and keep LaTeX Workshop-specific lint or message keys at default unless there is a proven need to change them.
 
 ## Quick Start
@@ -20,6 +22,8 @@ If the user only wants distracting red or yellow LaTeX squiggles to disappear in
 ```bash
 python3 scripts/apply_vscode_dark_pdf.py --invert 0.85
 ```
+
+The helper script sets reverse SyncTeX in the internal PDF viewer to `double-click`.
 
 2. If the `.tex` source editor does not wrap long lines, or the user wants editor squiggles hidden without changing the document body, add or update workspace `.vscode/settings.json` with:
 
@@ -48,13 +52,18 @@ code --uninstall-extension tomoki1207.pdf
 
 On the validated Ubuntu path, reopening the PDF after applying the baseline settings was sufficient; a full VS Code restart was not required.
 
-5. If the PDF is still bright, relaunch VS Code once with GPU disabled and open the `.tex` file plus a fresh-path PDF copy:
+5. For source/PDF alignment:
+
+- double-click in the PDF for reverse SyncTeX back to the `.tex` source
+- use `Ctrl+Alt+J` or `LaTeX Workshop: SyncTeX from cursor` for forward SyncTeX from source to PDF
+
+6. If the PDF is still bright, relaunch VS Code once with GPU disabled and open the `.tex` file plus a fresh-path PDF copy:
 
 ```bash
 code --disable-gpu "/path/to/file.tex" "/path/to/fresh-copy.pdf"
 ```
 
-6. Confirm the PDF opens on the right, the LaTeX source wraps inside its pane, and the PDF renders dark inside VS Code.
+7. Confirm the PDF opens on the right, the LaTeX source wraps inside its pane, reverse SyncTeX works from PDF double-click, and the PDF renders dark inside VS Code.
 
 ## Baseline Settings
 
@@ -64,6 +73,7 @@ The script enforces only these settings:
 - `latex-workshop.view.pdf.invert = <value>`
 - `latex-workshop.view.pdf.viewer = "tab"`
 - `latex-workshop.view.pdf.tab.editorGroup = "right"`
+- `latex-workshop.view.pdf.internal.synctex.keybinding = "double-click"`
 - `workbench.editorAssociations["*.pdf"] = "latex-workshop-pdf-hook"`
 
 The script removes these keys if present because they commonly interfere with this route:
@@ -83,6 +93,8 @@ The script removes these keys if present because they commonly interfere with th
 - Prefer LaTeX Workshop's internal viewer to preserve the Overleaf-style split view.
 - Prefer workspace-level `[latex].editor.wordWrap = "on"` when the user wants the source editor to behave like Overleaf. Use `Option+Z` only as a quick temporary check.
 - On the validated Ubuntu path, workspace-level `[latex].editor.wordWrap = "on"` took effect without restarting VS Code.
+- Prefer `double-click` for reverse SyncTeX in the internal PDF viewer when the user wants Overleaf-like PDF-to-source jumps.
+- Use `Ctrl+Alt+J` or `LaTeX Workshop: SyncTeX from cursor` for forward SyncTeX from source to PDF.
 - If the user says the file compiles but the editor is covered with distracting squiggles, prefer `[latex].editor.renderValidationDecorations = "off"` over changing document content.
 - Keep `latex-workshop.message.*`, `latex-workshop.linting.*`, and similar extension-specific suppression keys at default unless troubleshooting shows a concrete need to change them.
 - Use a fresh PDF pathname when retesting. Restored webviews can keep stale state.
@@ -95,6 +107,7 @@ The script removes these keys if present because they commonly interfere with th
 ## Troubleshooting
 
 - Long source lines run off the visible pane: this is usually an editor-wrap issue, not a LaTeX issue. First set workspace `.vscode/settings.json` to `[latex].editor.wordWrap = "on"`. On the validated Ubuntu path, this took effect without restarting VS Code. Use `Option+Z` only to confirm the diagnosis.
+- Double-click in the PDF does nothing: make sure the PDF is opened in LaTeX Workshop's internal viewer and that a sibling `.synctex.gz` file exists next to the PDF. If not, rebuild with SyncTeX enabled, e.g. `latexmk -pdf -synctex=1`.
 - Inline red or yellow LaTeX squiggles are distracting but the file otherwise works: restore any experimental LaTeX Workshop suppression keys to default, then hide editor decorations with `[latex].editor.renderValidationDecorations = "off"` in workspace `.vscode/settings.json`.
 - Conflict warning mentioning `vscode-pdf`: uninstall `tomoki1207.pdf`.
 - PDF opens in the wrong pane: verify `latex-workshop.view.pdf.tab.editorGroup = "right"`.
