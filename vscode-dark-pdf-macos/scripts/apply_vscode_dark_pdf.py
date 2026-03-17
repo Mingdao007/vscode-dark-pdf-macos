@@ -1,14 +1,19 @@
 #!/usr/bin/env python3
-"""Apply a minimal LaTeX Workshop dark-PDF configuration for macOS VS Code."""
+"""Apply a minimal LaTeX Workshop dark-PDF configuration for macOS or Ubuntu VS Code."""
 
 from __future__ import annotations
 
 import argparse
 import json
+import platform
 from pathlib import Path
 
 
 REMOVE_KEYS = [
+    "latex-workshop.view.pdf.color.light.pageColorsBackground",
+    "latex-workshop.view.pdf.color.light.pageColorsForeground",
+    "latex-workshop.view.pdf.color.light.backgroundColor",
+    "latex-workshop.view.pdf.color.light.pageBorderColor",
     "latex-workshop.view.pdf.color.dark.pageColorsBackground",
     "latex-workshop.view.pdf.color.dark.pageColorsForeground",
     "latex-workshop.view.pdf.color.dark.backgroundColor",
@@ -17,13 +22,20 @@ REMOVE_KEYS = [
 ]
 
 
+def default_settings_path() -> Path:
+    system = platform.system()
+    if system == "Darwin":
+        return Path.home() / "Library/Application Support/Code/User/settings.json"
+    return Path.home() / ".config/Code/User/settings.json"
+
+
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description="Apply a minimal VS Code + LaTeX Workshop dark PDF setup."
     )
     parser.add_argument(
         "--settings",
-        default=str(Path.home() / "Library/Application Support/Code/User/settings.json"),
+        default=str(default_settings_path()),
         help="Path to the VS Code user settings.json file.",
     )
     parser.add_argument(
@@ -83,7 +95,8 @@ def main() -> int:
 
     print(f"Updated {settings_path}")
     print(f"latex-workshop.view.pdf.invert = {args.invert}")
-    print("Next step: fully quit VS Code and relaunch once with --disable-gpu if PDF stays bright.")
+    print("Next step: reopen the PDF from a fresh pathname inside VS Code.")
+    print("If it stays bright, relaunch once with --disable-gpu.")
     return 0
 
 
