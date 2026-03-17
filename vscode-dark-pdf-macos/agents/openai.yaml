@@ -1,0 +1,4 @@
+interface:
+  display_name: "VS Code Dark PDF"
+  short_description: "Configure macOS VS Code for dark PDF viewing and LaTeX editing."
+  default_prompt: "Use $vscode-dark-pdf-macos to configure macOS VS Code for left-TeX/right-PDF LaTeX Workshop workflow, including dark PDF viewing, LaTeX editor soft wrap, and hiding distracting LaTeX squiggles without editing the document body."
