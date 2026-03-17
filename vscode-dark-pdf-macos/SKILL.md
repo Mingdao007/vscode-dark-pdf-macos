@@ -36,6 +36,8 @@ Prefer workspace editor settings over a temporary toggle when the user wants dur
 
 Use `editor.renderValidationDecorations = "off"` only for `latex`, not globally. This hides inline squiggles in the editor without requiring `.tex` cleanup.
 
+On the validated Ubuntu path, workspace-level `[latex].editor.wordWrap = "on"` took effect without restarting VS Code.
+
 3. If `tomoki1207.pdf` is installed, uninstall it:
 
 ```bash
@@ -80,6 +82,7 @@ The script removes these keys if present because they commonly interfere with th
 
 - Prefer LaTeX Workshop's internal viewer to preserve the Overleaf-style split view.
 - Prefer workspace-level `[latex].editor.wordWrap = "on"` when the user wants the source editor to behave like Overleaf. Use `Option+Z` only as a quick temporary check.
+- On the validated Ubuntu path, workspace-level `[latex].editor.wordWrap = "on"` took effect without restarting VS Code.
 - If the user says the file compiles but the editor is covered with distracting squiggles, prefer `[latex].editor.renderValidationDecorations = "off"` over changing document content.
 - Keep `latex-workshop.message.*`, `latex-workshop.linting.*`, and similar extension-specific suppression keys at default unless troubleshooting shows a concrete need to change them.
 - Use a fresh PDF pathname when retesting. Restored webviews can keep stale state.
@@ -91,7 +94,7 @@ The script removes these keys if present because they commonly interfere with th
 
 ## Troubleshooting
 
-- Long source lines run off the visible pane: this is usually an editor-wrap issue, not a LaTeX issue. First set workspace `.vscode/settings.json` to `[latex].editor.wordWrap = "on"`. Use `Option+Z` only to confirm the diagnosis.
+- Long source lines run off the visible pane: this is usually an editor-wrap issue, not a LaTeX issue. First set workspace `.vscode/settings.json` to `[latex].editor.wordWrap = "on"`. On the validated Ubuntu path, this took effect without restarting VS Code. Use `Option+Z` only to confirm the diagnosis.
 - Inline red or yellow LaTeX squiggles are distracting but the file otherwise works: restore any experimental LaTeX Workshop suppression keys to default, then hide editor decorations with `[latex].editor.renderValidationDecorations = "off"` in workspace `.vscode/settings.json`.
 - Conflict warning mentioning `vscode-pdf`: uninstall `tomoki1207.pdf`.
 - PDF opens in the wrong pane: verify `latex-workshop.view.pdf.tab.editorGroup = "right"`.

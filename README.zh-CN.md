@@ -29,6 +29,7 @@ English version: [README.md](README.md)
 ## 已验证说明
 
 - 在已验证的 Ubuntu 路线里，应用基础设置后，只要用 fresh path 重新打开 PDF，就不需要重启 VS Code。
+- 在已验证的 Ubuntu 路线里，workspace `.vscode/settings.json` 中的 `[latex].editor.wordWrap = "on"` 也不需要重启 VS Code 就能生效。
 - 如果 PDF 仍然偏白，下一步 fallback 是单次用 `--disable-gpu` 重新启动 VS Code。
 
 ## 触发示例

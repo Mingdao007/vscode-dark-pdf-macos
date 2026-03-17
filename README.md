@@ -29,6 +29,7 @@ Ask Codex App to:
 ## Validated Note
 
 - On the validated Ubuntu path, reopening the PDF from a fresh pathname after applying the baseline settings was sufficient; a full VS Code restart was not required.
+- On the validated Ubuntu path, workspace `.vscode/settings.json` with `[latex].editor.wordWrap = "on"` also worked without restarting VS Code.
 - If the PDF stays bright, the next fallback is a single `--disable-gpu` relaunch.
 
 ## Trigger Examples

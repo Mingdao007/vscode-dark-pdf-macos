@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.2 - 2026-03-18
+
+- Document the validated Ubuntu workspace soft-wrap path using `[latex].editor.wordWrap = "on"`.
+- Note that this workspace-level `.tex` soft-wrap setting also took effect without restarting VS Code on the validated Ubuntu path.
+
 ## 0.1.1 - 2026-03-18
 
 - Adapt the helper script to auto-detect macOS and Ubuntu VS Code settings paths.
