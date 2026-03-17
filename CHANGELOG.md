@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.6 - 2026-03-18
+
+- Document that LaTeX Workshop's default `Build LaTeX project` path normally already includes SyncTeX.
+- Clarify that explicit `-synctex=1` is still required for custom tools, custom recipes, or external build scripts.
+- Keep the validated Ubuntu `.tex` soft-wrap note visible alongside the SyncTeX workflow guidance.
+
 ## 0.1.5 - 2026-03-18
 
 - Document that some `.tex` underlines come from spell-checker language mismatch rather than LaTeX diagnostics.

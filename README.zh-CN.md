@@ -33,7 +33,7 @@ English version: [README.md](README.md)
 - 在已验证的 Ubuntu 路线里，应用基础设置后，只要用 fresh path 重新打开 PDF，就不需要重启 VS Code。
 - 在已验证的 Ubuntu 路线里，workspace `.vscode/settings.json` 中的 `[latex].editor.wordWrap = "on"` 也不需要重启 VS Code 就能生效。
 - helper 脚本现在会把内置 PDF viewer 的反向 SyncTeX 设成 `double-click`。
-- 反向 SyncTeX 还要求 PDF 旁边存在对应的 `.synctex.gz`，而且这条工作流以后每次编译都要带 `-synctex=1`，不能把它当成一次性补救。
+- 反向 SyncTeX 还要求 PDF 旁边存在对应的 `.synctex.gz`。如果你走的是 LaTeX Workshop 默认的 `Build LaTeX project` 编译链，通常本来就会带上 SyncTeX；如果你改成了自定义 `tools`、自定义 `recipes`，或者外部脚本编译，就要确保以后每次编译都保留 `-synctex=1`，不能把它当成一次性补救。
 - 如果 PDF 仍然偏白，下一步 fallback 是单次用 `--disable-gpu` 重新启动 VS Code。
 - 如果只是普通英文单词被标了波浪线、但文件本身能正常编译，先检查拼写扩展的语言设置，例如在 `Spell Right` 里把当前文件或 workspace 切到 `English`，再决定要不要动 LaTeX 诊断设置。
 
