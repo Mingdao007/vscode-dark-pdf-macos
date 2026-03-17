@@ -15,7 +15,7 @@ For Overleaf-like source/PDF alignment, use SyncTeX in both directions: reverse 
 
 For the validated workflow, treat `-synctex=1` as a build requirement on every compile, not as a one-time recovery flag.
 
-If the user only wants distracting red or yellow LaTeX squiggles to disappear inside the editor, prefer workspace editor settings for `latex` first and keep LaTeX Workshop-specific lint or message keys at default unless there is a proven need to change them.
+If the user only wants distracting red or yellow LaTeX squiggles to disappear inside the editor, first distinguish LaTeX diagnostics from spell-checker underlines. If a spell-checking extension is active, confirm it is using the expected language for the file before changing LaTeX settings. Then prefer workspace editor settings for `latex` and keep LaTeX Workshop-specific lint or message keys at default unless there is a proven need to change them.
 
 ## Quick Start
 
@@ -99,7 +99,7 @@ The script removes these keys if present because they commonly interfere with th
 - Prefer `double-click` for reverse SyncTeX in the internal PDF viewer when the user wants Overleaf-like PDF-to-source jumps.
 - Use `Ctrl+Alt+J` or `LaTeX Workshop: SyncTeX from cursor` for forward SyncTeX from source to PDF.
 - Treat `-synctex=1` as an every-build requirement for this workflow; do not present it as a one-off fix.
-- If the user says the file compiles but the editor is covered with distracting squiggles, prefer `[latex].editor.renderValidationDecorations = "off"` over changing document content.
+- If the user says the file compiles but the editor is covered with distracting squiggles, first rule out spell-checker language mismatch, then prefer `[latex].editor.renderValidationDecorations = "off"` over changing document content.
 - Keep `latex-workshop.message.*`, `latex-workshop.linting.*`, and similar extension-specific suppression keys at default unless troubleshooting shows a concrete need to change them.
 - Use a fresh PDF pathname when retesting. Restored webviews can keep stale state.
 - Start from `--invert 0.85` as the default initial value. It is a good first try when the user wants a dark PDF that is less harsh than full-strength inversion.
@@ -111,6 +111,7 @@ The script removes these keys if present because they commonly interfere with th
 ## Troubleshooting
 
 - Long source lines run off the visible pane: this is usually an editor-wrap issue, not a LaTeX issue. First set workspace `.vscode/settings.json` to `[latex].editor.wordWrap = "on"`. On the validated Ubuntu path, this took effect without restarting VS Code. Use `Option+Z` only to confirm the diagnosis.
+- Ordinary English words are underlined but the file still compiles: this may be a spell-checker language issue rather than a LaTeX diagnostic. In `Spell Right` or a similar extension, select `English` for the file or workspace first. If the underlines remain and correspond to editor diagnostics, then use `[latex].editor.renderValidationDecorations = "off"` for `latex`.
 - Double-click in the PDF does nothing: make sure the PDF is opened in LaTeX Workshop's internal viewer and that a sibling `.synctex.gz` file exists next to the PDF. If not, rebuild with SyncTeX enabled, e.g. `latexmk -pdf -synctex=1`, and keep that flag on every future build.
 - Inline red or yellow LaTeX squiggles are distracting but the file otherwise works: restore any experimental LaTeX Workshop suppression keys to default, then hide editor decorations with `[latex].editor.renderValidationDecorations = "off"` in workspace `.vscode/settings.json`.
 - Conflict warning mentioning `vscode-pdf`: uninstall `tomoki1207.pdf`.

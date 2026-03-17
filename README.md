@@ -25,6 +25,7 @@ Ask Codex App to:
 - enable `.tex` soft wrap without rewriting document lines
 - jump from PDF to source by double-click and sync from source to PDF with `Ctrl+Alt+J`
 - hide distracting LaTeX squiggles through workspace settings
+- distinguish spell-checker language mismatches from real LaTeX diagnostics when words are underlined
 - troubleshoot white PDF rendering, stale PDF paths, missing `.synctex.gz`, and `vscode-pdf` extension conflicts
 
 ## Validated Note
@@ -34,6 +35,7 @@ Ask Codex App to:
 - The helper script now sets reverse SyncTeX in the internal PDF viewer to `double-click`.
 - Reverse SyncTeX also requires a sibling `.synctex.gz` file beside the PDF, and this workflow should be compiled with `-synctex=1` on every build, not as a one-time fix.
 - If the PDF stays bright, the next fallback is a single `--disable-gpu` relaunch.
+- If ordinary words are underlined but the file compiles, first check the spell-checker language for the file or workspace, for example selecting `English` in `Spell Right`, before changing LaTeX diagnostics settings.
 
 ## Trigger Examples
 

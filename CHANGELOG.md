@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.5 - 2026-03-18
+
+- Document that some `.tex` underlines come from spell-checker language mismatch rather than LaTeX diagnostics.
+- Add a concrete troubleshooting note to check spell-checker language selection first, for example choosing `English` in `Spell Right`.
+
 ## 0.1.4 - 2026-03-18
 
 - Treat `-synctex=1` as an every-build requirement for the validated source/PDF alignment workflow.

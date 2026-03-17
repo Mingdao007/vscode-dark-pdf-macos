@@ -25,6 +25,7 @@ English version: [README.md](README.md)
 - 给 `.tex` 编辑器开启自动换行，而不去改文档内容
 - 让 PDF 里双击跳回源码，并用 `Ctrl+Alt+J` 从源码同步到 PDF
 - 用 workspace 设置隐藏干扰性的 LaTeX 波浪线
+- 当单词被标波浪线时，先区分这是拼写检查语言没设对，还是 LaTeX 诊断
 - 排查白色 PDF 渲染、旧 PDF 路径缓存、缺失 `.synctex.gz`，以及 `vscode-pdf` 扩展冲突
 
 ## 已验证说明
@@ -34,6 +35,7 @@ English version: [README.md](README.md)
 - helper 脚本现在会把内置 PDF viewer 的反向 SyncTeX 设成 `double-click`。
 - 反向 SyncTeX 还要求 PDF 旁边存在对应的 `.synctex.gz`，而且这条工作流以后每次编译都要带 `-synctex=1`，不能把它当成一次性补救。
 - 如果 PDF 仍然偏白，下一步 fallback 是单次用 `--disable-gpu` 重新启动 VS Code。
+- 如果只是普通英文单词被标了波浪线、但文件本身能正常编译，先检查拼写扩展的语言设置，例如在 `Spell Right` 里把当前文件或 workspace 切到 `English`，再决定要不要动 LaTeX 诊断设置。
 
 ## 触发示例
 
