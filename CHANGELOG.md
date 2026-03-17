@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.4 - 2026-03-18
+
+- Treat `-synctex=1` as an every-build requirement for the validated source/PDF alignment workflow.
+- Update the docs and helper output so users do not mistake SyncTeX as a one-time recovery flag.
+
 ## 0.1.3 - 2026-03-18
 
 - Merge the validated SyncTeX source/PDF alignment workflow into the skill.

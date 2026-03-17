@@ -99,6 +99,7 @@ def main() -> int:
     print("Reverse SyncTeX in the PDF viewer is set to double-click.")
     print("Next step: reopen the PDF from a fresh pathname inside VS Code.")
     print("If reverse SyncTeX does nothing, confirm a sibling .synctex.gz file exists.")
+    print("Build with SyncTeX enabled on every run, e.g. latexmk -pdf -synctex=1.")
     print("If it stays bright, relaunch once with --disable-gpu.")
     return 0
 
